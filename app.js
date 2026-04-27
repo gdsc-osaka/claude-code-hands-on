@@ -104,7 +104,7 @@ function openModal(task = null) {
 // --- Rendering ---
 function formatDueDate(dateStr) {
   if (!dateStr) return '';
-  const due = new Date(dateStr);
+  const due = new Date(dateStr + 'T00:00:00');
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
