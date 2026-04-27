@@ -185,9 +185,11 @@ function getFilteredTasks() {
   // Filter by search
   const query = $('search-input').value.trim().toLowerCase();
   if (query) {
-    // BUG 2: Search only checks title but not description or assignee.
-    // Users expect to find tasks by description or assignee too.
-    filtered = filtered.filter(t => t.title.toLowerCase().includes(query));
+    filtered = filtered.filter(t =>
+      t.title.toLowerCase().includes(query) ||
+      (t.description && t.description.toLowerCase().includes(query)) ||
+      (t.assignee && t.assignee.toLowerCase().includes(query))
+    );
   }
 
   return filtered;
